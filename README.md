@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/gcpmendez/prct09.svg?branch=master)](https://travis-ci.org/gcpmendez/prct09)
+[![Coverage Status](https://coveralls.io/repos/gcpmendez/prct10/badge.svg?branch=master&service=github)](https://coveralls.io/github/gcpmendez/prct10?branch=master)
 
 # Práctica de laboratorio \#9
       
