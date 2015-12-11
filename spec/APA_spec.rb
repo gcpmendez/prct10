@@ -50,13 +50,26 @@ describe APA do
 
 # Cuando un autor aparezca tanto como un autor solo y, en otra cita, como el primer autor
 # de un grupo, liste primero las entradas de un autor.
+	it "Autor solo y primer autor APA" do
+	 	@journalArticle = JournalArticle.new(["Vincent asd", "Lucas fonde"],"exclusiva enero","10/05/1980","hola!", 4,1, 0, 10)
+	 	@journalArticle1 = JournalArticle.new(["Vincent asd"],"exclusiva enero","10/05/1987","hola!", 4,1, 0, 10)
+	 	@journalArticle2 = JournalArticle.new(["Vincent asd"],"exclusiva enero","10/05/1983","hola!", 4,1, 0, 10)
+	 	@apa.insert(@journalArticle)
+	 	@apa.insert(@journalArticle1)
+	 	@apa.insert(@journalArticle2)
+ 	
+      	expect(@apa.to_s).to be == "asd, V. (10/05/1983).  exclusiva enero.  hola!,  10.\n\n asd, V. (10/05/1987).  exclusiva enero.  hola!,  10.\n\n asd, V. & fonde, L. (10/05/1980).  exclusiva enero.  hola!,  10.\n\n "	
+	end
+	
 # Si est´a usando m´as de una referencia del mismo autor (o el mismo grupo de autores listados
 # en el mismo orden) publicados en el mismo a˜no, organ´ıcelos en la lista de referencias
 # alfab´eticamente de acuerdo al t´ıtulo del art´ıculo o del cap´ıtulo. Entonces asigne letras al
-# a˜no como sufijos. Cuando se refiera a estas publicaciones en su escrito utilice las letras de
+# ano como sufijos. Cuando se refiera a estas publicaciones en su escrito utilice las letras de
 # sufijos con el a˜no para que el lector sepa a cu´al referencia se est´a refiriendo.
 # Utilice & en lugar de ’y’ [o de ’and’ en las versiones en ingl´es] cuando liste varios autores
 # de un solo trabajo.
+
+
 # Todas las l´ıneas despu´es de la primera l´ınea de cada entrada en su lista de referencias deben
 # tener una sangr´ıa de media pulgada desde el margen izquierdo. Es una sangr´ıa francesa.
 # Ponga en may´usculas la primera letra de las palabras principales de los t´ıtulos de revistas
