@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/gcpmendez/prct09.svg?branch=master)](https://travis-ci.org/gcpmendez/prct09)
 [![Coverage Status](https://coveralls.io/repos/gcpmendez/prct10/badge.svg?branch=master&service=github)](https://coveralls.io/github/gcpmendez/prct10?branch=master)
 
-# Práctica de laboratorio \#9
+# Práctica de laboratorio \#10
       
 Este práctica ha sido desarrollado en la asignatura de **Lenguajes y Paradigmas de la Programación** del **_Grado en Ingeniería Informática_** de la **ULL**.
 
