@@ -3,8 +3,8 @@
 # subtítulo (edición) (volumen). Lugar de publicación: editor o casa publicadora.
 
 # Artículo: Para un artículo o capítulo dentro de un libro editado:
-# Autor, A. A. & Autor, B. B. (A˜no de publicaci´on). T´ıtulo del art´ıculo o cap´ıtulo. En A.
-# Editor & B. Editor (Eds.), Título de la obra (n´umeros de p´aginas del cap´ıtulo) (edici´on)
+# Autor, A. A. & Autor, B. B. (A˜no de publicación). T´ıtulo del artículo o capítulo. En A.
+# Editor & B. Editor (Eds.), Título de la obra (números de páginas del cap´ıtulo) (edici´on)
 # (volumen). Lugar de publicaci´on: editor o casa publicadora.
 
 # Artículo de periódico:
@@ -26,7 +26,9 @@ class APA
 
 	def initialize()
 		@lista = LinkedList.new
+		@sufijo = 0
 	end
+	
 	def insert(reference)
 		raise ArgumentError, "La referencia no es de tipo referencia" unless reference.kind_of?(Reference)
 		
@@ -35,20 +37,19 @@ class APA
 		reference.authors.each do |a|
 			# raise ArgumentError, "Uno de los autores no es un string" unless a.is_a?(String)
 			# raise ArgumentError, "Se especifica unicamente el nombre o el apellido" unless a.split(' ').length > 1
-			separado = a.split(/\W+/)
-			str+=separado[1]
+			element = a.split(/\W+/)
+			str+=element[1]
 			str+=", "
-			unless separado[2].nil?
-				str+=separado[2][0]
+			unless element[2].nil?
+				str+=element[2][0]
 				str+="."
 			end
-			str+=separado[0][0]
+			str+=element[0][0]
 			str+="."
 			str+=" & " unless a == reference.authors.last
 		end
 		reference.authors = str
 		@lista.insert_by_end(reference)
-		
 	end
 	
 	def each
@@ -56,10 +57,11 @@ class APA
 	end
 		
 	def to_s
-		arrayTemp = Array.new
-		arrayTemp = @lista.sort
+		authorsPrev = ""
+		datePrev = ""
+		listSort = @lista.sort
 		string = ""
-		arrayTemp.each do |i|
+		listSort.each do |i|
 			if (i.instance_of? Book)
 				
 				# Autores APA
@@ -67,8 +69,19 @@ class APA
 			
 				# Año de publicacion APA
 				element = i.date.split(/\//)
-				string += " (#{element[2]}). "
+				string += " (#{element[2]}"
 				
+				
+				if (i.date == datePrev &&  i.authors == authorsPrev)
+					string += (@sufijo+97).chr
+					string += "). "
+					@sufijo += 1
+        		else
+        			string += "). "
+				end
+				authorsPrev = i.authors
+				datePrev = i.date
+        
 				# Título APA
 				string += " #{i.title} "
 				
@@ -85,7 +98,17 @@ class APA
 				string += i.authors
 			
 				# fecha de publicacion APA
-				string += " (#{i.date}). "
+				string += " (#{i.date}"
+				
+				if (i.date == datePrev &&  i.authors == authorsPrev)
+					string += (@sufijo+97).chr
+					string += "). "
+					@sufijo += 1
+        		else
+        			string += "). "
+				end
+				authorsPrev = i.authors
+				datePrev = i.date
 				
 				# Título articuloAPA
 				string += " #{i.title}. "
@@ -95,8 +118,6 @@ class APA
 				
 				# Número de paginas APA
 				string += " #{i.finalpage}.\n\n "
-				
-			
 			end
 		end
 		return string
