@@ -1,40 +1,14 @@
-[![Build Status](https://travis-ci.org/gcpmendez/prct09.svg?branch=master)](https://travis-ci.org/gcpmendez/prct09)
+[![Build Status](https://travis-ci.org/gcpmendez/prct10.svg?branch=master)](https://travis-ci.org/gcpmendez/prct10)
 [![Coverage Status](https://coveralls.io/repos/gcpmendez/prct10/badge.svg?branch=master&service=github)](https://coveralls.io/github/gcpmendez/prct10?branch=master)
 
 # Práctica de laboratorio \#10
       
 Este práctica ha sido desarrollado en la asignatura de **Lenguajes y Paradigmas de la Programación** del **_Grado en Ingeniería Informática_** de la **ULL**.
 
-## Descripción de la práctica: POO. módulos.
-1. Considere la jerarquía de clases Ruby para representar referencias bibliográficas de prácticas
-anteriores.
-Modifíquela de manera que las instancias sean comparables.
-Utilizar la metodología de desarrollo dirigido por pruebas (Test Driven Development - TDD) y
-la herramienta RSpec.
-2. Considere la clase Ruby para representar y gestionar listas doblemente enlazadas de prácticas
-anteriores.
-Modifíquela de manera que las instancias sean enumerables.
-Utilizar la metodología de desarrollo dirigido por pruebas (Test Driven Development - TDD) y
-la herramienta RSpec.
-3. Comprobar con la herramienta Travis de Integración Continua. el código Ruby desarrollado.
-Con ella se comprueba la portabilidad de los desarrollos entre distintas plataformas y versiones
-de Ruby.
-Darse de alta en [(https://travis-ci.org/) y permitir que se acceda desde Github (poniendo
-a ON el proyecto).
-Crear un fichero .travis.yml que contenga el listado de plataformas sobre las que se quiere
-comprobar el correcto funcionamiento, por ejemplo:
+## Descripción de la práctica: Programación funcional
 
-```ruby
-language: ruby
-rvm:
-- 2.2.0
-- 1.9.3
-- jruby-19mode # JRuby in 1.9 mode
-- rbx-19mode
-```
-Para trabajar con Travis el repositorio debe estar en Github. Crear un ‘repositorio’ en Github.  
-4. Escribir la dirección http del repositorio que se ha creado en Github en la tarea habilitada en
-el Campus Virtual.
+
+[Enunciado de la práctica](https://github.com/gcpmendez/prct10/blob/master/prct10.pdf "statement")
 
 ## Árbol de ficheros y directorios
 ```
@@ -49,8 +23,10 @@ el Campus Virtual.
 ├── bin
 │   ├── console
 │   └── setup
+├── coverage
 ├── lib
-│   ├── prct09
+│   ├── prct10
+│   │   ├── APA.rb
 │   │   ├── book.rb
 │   │   ├── electronicdocument.rb
 │   │   ├── journalarticle.rb
@@ -59,9 +35,11 @@ el Campus Virtual.
 │   │   ├── reference.rb
 │   │   ├── regularpublications.rb
 │   │   └── version.rb
-│   └── prct09.rb
-├── prct09.gemspec
+│   └── prct10.rb
+├── prct10.gemspec
+├── prct10.pdf
 ├── spec
+│   ├── APA_spec.rb
 │   ├── Comparable_spec.rb
 │   ├── Enumerable_spec.rb
 │   ├── book_spec.rb
@@ -72,5 +50,4 @@ el Campus Virtual.
 │   ├── reference_spec.rb
 │   ├── regularpublications_spec.rb
 │   └── spec_helper.rb
-└── tmp
-```
+└── tmp```
