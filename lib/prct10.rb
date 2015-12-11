@@ -6,6 +6,7 @@ require "prct10/regularpublications"
 require "prct10/magazinearticle"
 require "prct10/journalarticle"
 require "prct10/electronicdocument"
+require "prct10/APA"
 
 module Prct10
 end

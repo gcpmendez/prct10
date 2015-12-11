@@ -1,12 +1,12 @@
 
 class Book < Reference
     
-    attr_accessor :serie,:editorial,:edition,:isbn
+    attr_accessor :volume, :editorial, :edition, :isbn, :authors
      
-	def initialize(title,editorial,edition,date,isbn,authors,*serie)
+	def initialize(title,editorial,edition,date,isbn,authors, volume)
 		super(authors,title,date)
-		
-        @serie = serie
+		@authors = authors
+        @volume = volume
         @editorial = editorial
         @edition = edition
 
@@ -25,9 +25,7 @@ class Book < Reference
 	    end
 	    text << "#{authors[authors.size-1]}."
 	    text << "\n#{@title}."
-	    if @serie.size==1
-	    	 text << "\n(#{@serie[0]})."
-	    end
+		 text << "\n#{@volume}."
 	     text << "\n#{@editorial}; #{@edition} Edition (#{@date})."
 	    for i in (0..@isbn.size-1)
 	    	 text << "\nISBN #{@isbn[i].length}: #{@isbn[i]}."

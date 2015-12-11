@@ -18,7 +18,15 @@ class Reference
 	
 	def <=>(other)
       return nil unless other.is_a? Reference
-      @title <=> other.title
+      if authors == other.authors then
+      	if date == other.date
+      		title <=> other.title
+      	else 
+      		date <=> other.date
+      	end
+      else
+      	authors <=> other.authors
+      end
 	end
 
 

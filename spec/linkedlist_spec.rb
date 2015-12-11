@@ -4,9 +4,9 @@ describe LinkedList do
   before :each do
     @book1=Book.new("Programming Ruby 1.9 &2.0: The Pragmatic Programmers Guide","Pragmatic Bookshelf", 4,"07/07/2013",["978-1937785499","1937785491"], ["Dave Thomas","Andy Hunt","Chad Fowler"],"The Facets of Ruby")
     @book2=Book.new("Pro Git 2009th Edition","Apress", 2009,"27/08/2009",["978-1430218333","1430218339"], ["Scott Chacon"],"Pro")
-    @book3=Book.new("The Ruby Programming Language","O’Reilly Media",1,"04/02/2008",["978-0596516178","0596516177"],["David Flanagan","Yukihiro Matsumoto"])
+    @book3=Book.new("The Ruby Programming Language","O'Reilly Media",1,"04/02/2008",["978-0596516178","0596516177"],["David Flanagan","Yukihiro Matsumoto"], 4)
     @book4=Book.new("The RSpec Book: Behaviour Driven Development with RSpec, Cucumber, and Friends","Pragmatic Bookshelf", 1,"25/12/2010",["978-1934356371","1934356379"], ["David Chelimsky","Dave Astels","Bryan Helmkamp","Dan North","Zach Dennis","Aslak Hellesoy"],"The Facets of Ruby")
-    @book5=Book.new("Git Pocket Guide","O’Reilly Media", 1,"02/08/2013",["978-1449325862","1449325866"], ["Richard E. Silverman"])
+    @book5=Book.new("Git Pocket Guide","O’Reilly Media", 1,"02/08/2013",["978-1449325862","1449325866"], ["Richard E. Silverman"], 2)
         
     @lista = LinkedList.new
   end
@@ -27,7 +27,7 @@ describe LinkedList do
     @lista.insert_by_begin(@book1)
     @lista.insert_by_begin(@book1)
     @lista.insert_by_begin(@book1)
-    expect(@lista.extract_by_begin().to_s).to eq("Dave Thomas , Andy Hunt , Chad Fowler.\nProgramming Ruby 1.9 &2.0: The Pragmatic Programmers Guide.\n(The Facets of Ruby).\nPragmatic Bookshelf; 4 Edition (07/07/2013).\nISBN 14: 978-1937785499.\nISBN 10: 1937785491.")
+    expect(@lista.extract_by_begin().to_s).to eq("Dave Thomas , Andy Hunt , Chad Fowler.\nProgramming Ruby 1.9 &2.0: The Pragmatic Programmers Guide.\nThe Facets of Ruby.\nPragmatic Bookshelf; 4 Edition (07/07/2013).\nISBN 14: 978-1937785499.\nISBN 10: 1937785491.")
   end 
   
 # Se puede insertar un elemento
