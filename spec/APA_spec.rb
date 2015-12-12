@@ -30,7 +30,7 @@ describe APA do
 		@apa.insert(@book)
 		@apa.insert(@book2)
 		@apa.insert(@book3)
-    	 expect(@apa.to_s).to be == "Auan, V.M. (1990).  Miguel de Unamuno  (2)  (3).  Catedra \n\nLiante, C. & Dalmeida, E. (1980).  Don Quijote  (4)  (2).  Anaya \n\nMoron, A.C. (1983).  La vida es sueño  (3)  (1).  Catedra \n\n"
+    	 expect(@apa.to_s).to be == "Auan, V.M. (1990).  Miguel de unamuno  (2)  (3).  Catedra \n\nLiante, C. & Dalmeida, E. (1980).  Don quijote  (4)  (2).  Anaya \n\nMoron, A.C. (1983).  La vida es sueño  (3)  (1).  Catedra \n\n"
 	end
 
 # Si tiene más de un artículo del (los) mismo autor(es) (referencias de un autor solo o referencias
@@ -45,7 +45,7 @@ describe APA do
 	 	@apa.insert(@journalArticle2)
  	
 
-      	expect(@apa.to_s).to be == "asd, V. (10/05/1980).  exclusiva enero.  hola!,  10.\n\n asd, V. (10/05/1983).  exclusiva enero.  hola!,  10.\n\n asd, V. (10/05/1987).  exclusiva enero.  hola!,  10.\n\n "	
+      	expect(@apa.to_s).to be == "asd, V. (10/05/1980).  Exclusiva enero.  hola!,  10.\n\n asd, V. (10/05/1983).  Exclusiva enero.  hola!,  10.\n\n asd, V. (10/05/1987).  Exclusiva enero.  hola!,  10.\n\n "	
 	end
 
 # Cuando un autor aparezca tanto como un autor solo y, en otra cita, como el primer autor
@@ -58,7 +58,7 @@ describe APA do
 	 	@apa.insert(@journalArticle1)
 	 	@apa.insert(@journalArticle2)
  	
-      	expect(@apa.to_s).to be == "asd, V. (10/05/1983).  exclusiva enero.  hola!,  10.\n\n asd, V. (10/05/1987).  exclusiva enero.  hola!,  10.\n\n asd, V. & fonde, L. (10/05/1980).  exclusiva enero.  hola!,  10.\n\n "	
+      	expect(@apa.to_s).to be == "asd, V. (10/05/1983).  Exclusiva enero.  hola!,  10.\n\n asd, V. (10/05/1987).  Exclusiva enero.  hola!,  10.\n\n asd, V. & fonde, L. (10/05/1980).  Exclusiva enero.  hola!,  10.\n\n "	
 	end
 	
 # Si está usando más de una referencia del mismo autor (o el mismo grupo de autores listados
@@ -76,18 +76,28 @@ describe APA do
 	 	@apa.insert(@journalArticle2)
 	 	@apa.insert(@journalArticle3)
  	
-      	expect(@apa.to_s).to be == "asd, V. (10/05/1980).  exclusiva enero.  hola!,  10.\n\n asd, V. (10/05/1980a).  exclusiva enero.  hola!,  10.\n\n asd, V. (10/05/1980b).  exclusiva enero.  hola!,  10.\n\n asd, V. (10/05/1983).  exclusiva enero.  hola!,  10.\n\n "	
+      	expect(@apa.to_s).to be == "asd, V. (10/05/1980).  Exclusiva enero.  hola!,  10.\n\n asd, V. (10/05/1980a).  Exclusiva enero.  hola!,  10.\n\n asd, V. (10/05/1980b).  Exclusiva enero.  hola!,  10.\n\n asd, V. (10/05/1983).  Exclusiva enero.  hola!,  10.\n\n "	
 	end
-
 
 # Utilice & en lugar de ’y’ [o de ’and’ en las versiones en inglés] cuando liste varios autores
 # de un solo trabajo.
+	it "& listando varios autores APA" do
+		@journalArticle = JournalArticle.new(["Vincent asd", "Lucas Mendoza"],"exclusiva enero","10/05/1980","hola!", 4,1, 0, 10)
+ 		@apa.insert(@journalArticle)
+		str = @apa.to_s.split(/\(/)
+		expect(str[0]).to eq("asd, V. & Mendoza, L. ")
+	end
 
-
-# Todas las l´ıneas despu´es de la primera l´ınea de cada entrada en su lista de referencias deben
-# tener una sangr´ıa de media pulgada desde el margen izquierdo. Es una sangr´ıa francesa.
-# Ponga en may´usculas la primera letra de las palabras principales de los t´ıtulos de revistas
-
+# Todas las líneas después de la primera línea de cada entrada en su lista de referencias deben
+# tener una sangría de media pulgada desde el margen izquierdo. Es una sangría francesa.
+# Ponga en mayúsculas la primera letra de las palabras principales de los títulos de revistas
+	it "Sangría y Mayúsculas APA" do
+		@journalArticle = JournalArticle.new(["Vincent asd", "Lucas Mendoza"],"exclusiva enero","10/05/1980","hola!", 4,1, 0, 10)
+ 		@apa.insert(@journalArticle)
+ 		@journalArticle2 = JournalArticle.new(["Dincent asd", "Hucas Mendoza"],"exclusiva enero","10/05/1984","hola!", 4,1, 0, 10)
+ 		@apa.insert(@journalArticle2)
+		expect(@apa.to_s).to eq("asd, D. & Mendoza, H. (10/05/1984).  Exclusiva enero.  hola!,  10.\n\n asd, V. & Mendoza, L. (10/05/1980).  Exclusiva enero.  hola!,  10.\n\n ")
+	end
 
 
 end

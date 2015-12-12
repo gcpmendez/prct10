@@ -12,8 +12,8 @@
 # pp. números de páginas.
 
 # Documentos electrónicos:
-# Autor/responsable (fecha de publicaci´on). T´ıtulo (edici´on), [tipo de medio]. Lugar de publicaci´on:
-# editor. Disponible en: especifique la v´ıa [fecha de acceso].
+# Autor/responsable (fecha de publicaci´on). Título (edición), [tipo de medio]. Lugar de publicación:
+# editor. Disponible en: especifique la vía [fecha de acceso].
 
 require "prct10/reference"
 require "prct10/linkedList"
@@ -83,7 +83,7 @@ class APA
 				datePrev = i.date
         
 				# Título APA
-				string += " #{i.title} "
+				string += " #{i.title.capitalize} "
 				
 				# Edición APA
 				string += " (#{i.edition}) "
@@ -111,13 +111,41 @@ class APA
 				datePrev = i.date
 				
 				# Título articuloAPA
-				string += " #{i.title}. "
+				string += " #{i.title.capitalize}. "
 				
 				# Nombre periodico APA
 				string += " #{i.journal}, "
 				
 				# Número de paginas APA
 				string += " #{i.finalpage}.\n\n "
+			elsif (i.class.to_s == "electronicdocument")
+				# Autores APA
+				string += i.authors
+			
+				# fecha de publicacion APA
+				string += " (#{i.date}"
+				
+				if (i.date == datePrev &&  i.authors == authorsPrev)
+					string += (@sufijo+97).chr
+					string += "). "
+					@sufijo += 1
+        		else
+        			string += "). "
+				end
+				authorsPrev = i.authors
+				datePrev = i.date
+				
+				# Título articuloAPA
+				string += " #{i.title.capitalize}"
+				
+				# Edición articuloAPA
+				string += " (#{i.edition})."
+				
+				# Nombre periodico APA
+				string += " [#{i.journal}] "
+				
+				# URL de paginas APA
+				string += " #{i.url}.\n\n "
 			end
 		end
 		return string
